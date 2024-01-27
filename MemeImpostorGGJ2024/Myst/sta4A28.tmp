@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://df6p66co5k8dl"]
+
+[ext_resource type="Script" path="res://start.gd" id="1_fgfpt"]
+[ext_resource type="Texture2D" uid="uid://cl6a4kvly83h0" path="res://img/Console1.jpeg" id="1_pp0pn"]
+[ext_resource type="Texture2D" uid="uid://d1syvek4hea42" path="res://img/SpaceStation.jpeg" id="3_s1wsb"]
+
+[node name="Start" type="Node2D"]
+script = ExtResource("1_fgfpt")
+
+[node name="Space" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Story" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Console" type="TextureRect" parent="."]
+offset_right = 766.0
+offset_bottom = 766.0
+scale = Vector2(1.50845, 0.838421)
+texture = ExtResource("1_pp0pn")
+expand_mode = 4
+
+[node name="Pic" type="TextureRect" parent="Console"]
+offset_left = 192.913
+offset_top = 231.387
+offset_right = 252.913
+offset_bottom = 291.387
+scale = Vector2(3.80176, 7.12249)
+texture = ExtResource("3_s1wsb")
+expand_mode = 4
+
+[node name="Titolo" type="Label" parent="Console"]
+layout_mode = 0
+offset_left = 190.261
+offset_top = 83.4903
+offset_right = 319.261
+offset_bottom = 106.49
+scale = Vector2(1.78205, 2.28296)
+text = "Titolo Messaggio
+"
+autowrap_mode = 1
+
+[node name="Testo" type="Label" parent="Console"]
+layout_mode = 0
+offset_left = 429.579
+offset_top = 77.5267
+offset_right = 529.579
+offset_bottom = 1504.53
+scale = Vector2(1.63335, 1.44757)
+text = "Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europ or separat existentie es un myth. Por scientie, musica, sport etc, lito"
+autowrap_mode = 2
+clip_text = true
+max_lines_visible = 16
+
+[node name="TextureButton" type="TextureButton" parent="Console"]
+layout_mode = 0
+offset_left = 92.8102
+offset_top = 300.565
+offset_right = 132.81
+offset_bottom = 340.565
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Console/TextureButton"]
+position = Vector2(-92.8102, -300.565)
+rotation = 3.14159
+scale = Vector2(11.5959, 5.45086)
+
+[node name="TextEdit" type="TextEdit" parent="Console"]
+visible = false
+layout_mode = 0
+offset_left = 430.242
+offset_top = 84.683
+offset_right = 438.242
+offset_bottom = 92.683
+scale = Vector2(18.6074, 27.0967)
+text = "Scrivi qui il tuo meme"
+scroll_vertical = 1.0
+
+[node name="TimerStart" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="TimerStart" to="." method="_on_timer_start_timeout"]

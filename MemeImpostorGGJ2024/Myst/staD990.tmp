@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://df6p66co5k8dl"]
+
+[ext_resource type="Script" path="res://start.gd" id="1_fgfpt"]
+[ext_resource type="Texture2D" uid="uid://cl6a4kvly83h0" path="res://img/Console1.jpeg" id="1_pp0pn"]
+
+[node name="Start" type="Node2D"]
+script = ExtResource("1_fgfpt")
+
+[node name="Console" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0.0588235, 0.196078, 0.0588235, 1)
+offset_right = 766.0
+offset_bottom = 766.0
+scale = Vector2(1.50845, 0.838421)
+texture = ExtResource("1_pp0pn")
+expand_mode = 4
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+scale = Vector2(1024, 1024)
+color = Color(0.00784314, 0.223529, 0.00784314, 1)
+
+[node name="TimerStart" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="TimerStart" to="." method="_on_timer_start_timeout"]
