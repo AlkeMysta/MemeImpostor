@@ -2,14 +2,26 @@ extends Node2D
 
 var TimerStoryCounter = 0
 var TestIniziato = 0
-
+var PulsXPremuto = 0
+var MyTurn = 0
+var Pag = 0
+var AP=0
 @onready var NPlayers = 3
 @onready var NDroids = NPlayers + 1
+@onready var NMeme = 7
 
 var ActivePlayer= [0,0,0,0,0] 
 var ActiveDroid= [1,0,0,0,0,0] 
-
+var Ordine = [0,1,2,3,4,5,6]
+	
 @onready var InputMeme = PackedStringArray(["", "", ""])
+@onready var TestMeme = [
+		["","","","","","",""],
+		[0,0,0,0,0,0,0],
+		["","","","","","",""],
+		["","","","","","",""],
+		[0,0,0,0,0,0,0]
+	]
 @onready var DroidMeme = [
 		["Stonks",
 		"Quando compri Bitcoin a 100.000€ e il giorno dopo scende a 10.000€", 
@@ -60,14 +72,11 @@ func _ready():
 		ActiveDroid[conta]=1
 		print (ActiveDroid)
 		
+	$TimerStory.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
-	
 
-
-func _on_timer_story_timeout():
 	if(TimerStoryCounter==0):	
 		$Story.show()
 		$StoryText.show()
@@ -95,10 +104,12 @@ func _on_timer_story_timeout():
 	if(TimerStoryCounter==9):
 		$Console/Testo.set_text("Premi il pulsante Enter per iniziare il Meme Touring Test. Scrivi per ogni meme una frase divertente da abbinare")
 		$Console/Pulsante.visible=true
-	TimerStoryCounter = TimerStoryCounter + 1
-	$TimerStory.start()
-		
+		$Skip.hide()
 
+
+func _on_timer_story_timeout():
+	TimerStoryCounter = TimerStoryCounter + 1
+		
 func _on_pulsante_pressed():
 	if (TestIniziato == 0):
 		$Console/Titolo.set_text("Droide MCX01 è il tuo turno - premi Enter")
@@ -135,8 +146,8 @@ func _on_pulsante_pressed():
 		$Console/Testo.set_text("Tutti i meme sono stati creati, ora si passerà alle votazioni - Premi Enter")
 		$Console/Testo.show()
 	if (TestIniziato == 7):
-		TestIniziato = -1
-		$Console/Pulsante.visible=false
+		#TestIniziato = -1
+		$Console/Pulsante.hide()
 		Votazione()
 		
 	TestIniziato = TestIniziato+1
@@ -146,30 +157,22 @@ func _on_pulsante_pressed():
  
 func Votazione():
 	var Frase=""
-	$Console/FrecciaDX.visible=true
-	$Console/FrecciaSX.visible=true
-	$Console/PulsX.visible=true
 	var AT=0
-	for AP in NPlayers:
-		AT=AT + ActivePlayer[AP]
+	for AX in NPlayers:
+		AT=AT + ActivePlayer[AX]
 	for AD in NDroids:
 		AT=AD + ActiveDroid[AD]
 	
-	var TestMeme = [
-		["","","","","","",""],
-		[0,0,0,0,0,0,0],
-		["","","","","","",""],
-		["","","","","","",""],
-		[0,0,0,0,0,0,0]
-	]
-	#PackedStringArray(
+	Ordine.shuffle()
+	print(Ordine)
+	
 	var TMC=0
-	for AP in NPlayers:
-		if (ActivePlayer[AP]==1):
+	for AX in NPlayers:
+		if (ActivePlayer[AX]==1):
 			TestMeme[0][TMC]="U"
-			TestMeme[1][TMC]=AP
-			TestMeme[2][TMC]=DroidMeme[AP][0]
-			TestMeme[3][TMC]=InputMeme[AP]
+			TestMeme[1][TMC]=AX
+			TestMeme[2][TMC]=DroidMeme[AX][0]
+			TestMeme[3][TMC]=InputMeme[AX]
 			TestMeme[4][TMC]=0
 			TMC=TMC+1
 	for AD in NDroids:
@@ -182,10 +185,76 @@ func Votazione():
 			TMC=TMC+1
 	
 	print (TestMeme)
-	for AP in NPlayers:
-		if (ActivePlayer[AP]==1):
+	for AX in NPlayers:
+		if (ActivePlayer[AX]==1 and PulsXPremuto==0 and MyTurn==0):
 			print ("debug2")
-			Frase="MCX0{id}, è il tuo turno: scegli il meme che credi sia scritto da un umano e premi il tasto X".format({"id": AP+1})
-			$Console/Testo.set_text(Frase)
-			print ("debug3")
+			MyTurn=1
+			AP=AX
+			Visualizza(AX)
+			
 			#TestMeme[4][TMC]= voto
+
+func Visualizza(AX):
+			$Console/FrecciaDX.visible=true
+			$Console/FrecciaSX.visible=true
+			$Console/PulsX.visible=true
+			$Console/Titolo.set_text("MCX0{id} è il tuo turno: scegli il meme scritto da un umano e premi X".format({"id": AX+1}))
+			$Console/Testo.set_text(TestMeme[3][Ordine[Pag]])
+			$Console/Stonks.hide()
+			$Console/PepeTheFrog.hide()
+			$Console/DogeGlasses.hide()
+			$Console/Scoiattolo.hide()
+			$Console/CryingCat.hide()
+			$Console/KazooKid.hide()
+			$Console/BarkingDog.hide()
+							
+			if (TestMeme[2][Ordine[Pag]]=="Stonks"): 
+				$Console/Stonks.show()
+				print ("debug Stonks")
+			if (TestMeme[2][Ordine[Pag]]=="PepeTheFrog"): 
+				$Console/PepeTheFrog.show()
+				print ("debug PepeTheFrog")
+			if (TestMeme[2][Ordine[Pag]]=="DogeGlasses"): 
+				$Console/DogeGlasses.show()
+				print ("debug DogeGlasses")
+			if (TestMeme[2][Ordine[Pag]]=="Scoiattolo"): 
+				$Console/Scoiattolo.show()
+				print ("debug Scoiattolo")
+			if (TestMeme[2][Ordine[Pag]]=="CryingCat"): 
+				$Console/CryingCat.show()
+				print ("debug CryingCat")
+			if (TestMeme[2][Ordine[Pag]]=="KazooKid"): 
+				$Console/KazooKid.show()
+				print ("debug KazooKid")
+			if (TestMeme[2][Ordine[Pag]]=="BarkingDog"): 
+				$Console/BarkingDog.show()
+				print ("debug BarkingDog")
+			
+			print(TestMeme[2][Ordine[Pag]])
+
+				
+				
+
+func _on_puls_x_pressed():
+	PulsXPremuto=1
+	MyTurn=0
+	print(PulsXPremuto)
+	$Console/Titolo.set_text("Grazie per aver votato!")
+
+func _on_freccia_dx_pressed():
+	if (Pag<6):
+		Pag=Pag+1
+	else:
+		Pag=0
+	Visualizza(AP)
+
+func _on_freccia_sx_pressed():
+	if (Pag>0):
+		Pag=Pag-1
+	else:
+		Pag=6
+	Visualizza(AP)
+
+func _on_skip_pressed():
+	TimerStoryCounter=TimerStoryCounter+1
+	print("debug Skip")

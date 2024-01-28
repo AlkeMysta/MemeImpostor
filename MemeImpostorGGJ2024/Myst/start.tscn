@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df6p66co5k8dl"]
+[gd_scene load_steps=19 format=3 uid="uid://df6p66co5k8dl"]
 
 [ext_resource type="Script" path="res://start.gd" id="1_fgfpt"]
 [ext_resource type="Texture2D" uid="uid://cl6a4kvly83h0" path="res://img/Console1.jpeg" id="1_pp0pn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://evj8n0f5eilu" path="res://img/arrowDX.png" id="7_x66o7"]
 [ext_resource type="Texture2D" uid="uid://nm0fny7o76yt" path="res://img/arrowSX.png" id="8_10rp8"]
 [ext_resource type="Texture2D" uid="uid://cyx2c0huf6pf1" path="res://meme/Stonks.jpeg" id="8_wrqrq"]
+[ext_resource type="Texture2D" uid="uid://dmqjsx8uwl4rm" path="res://xbuttongjfk.png" id="9_7rx66"]
 [ext_resource type="Texture2D" uid="uid://by8iw0dw511iv" path="res://meme/DogeGlasses.jpeg" id="9_iilau"]
 [ext_resource type="Texture2D" uid="uid://154kn6rvxb3l" path="res://img/xbuttongjfxbxhxhduzn.png" id="9_x6ch7"]
 [ext_resource type="Texture2D" uid="uid://n1l31bis6kif" path="res://meme/CryingCat.jpeg" id="10_daana"]
@@ -209,15 +210,26 @@ position = Vector2(305.612, 454.426)
 scale = Vector2(0.5, 0.95)
 texture = ExtResource("16_g50aj")
 
+[node name="Skip" type="TextureButton" parent="."]
+offset_left = 1061.0
+offset_top = 567.0
+offset_right = 1894.0
+offset_bottom = 1424.0
+scale = Vector2(0.0997645, 0.0801877)
+texture_normal = ExtResource("9_7rx66")
+
 [node name="TimerStory" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 25.0
 one_shot = true
 autostart = true
 
 [node name="Musica" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_30dct")
-volume_db = 16.0
 autoplay = true
 
 [connection signal="pressed" from="Console/Pulsante" to="." method="_on_pulsante_pressed"]
+[connection signal="pressed" from="Console/FrecciaDX" to="." method="_on_freccia_dx_pressed"]
+[connection signal="pressed" from="Console/FrecciaSX" to="." method="_on_freccia_sx_pressed"]
+[connection signal="pressed" from="Console/PulsX" to="." method="_on_puls_x_pressed"]
+[connection signal="pressed" from="Skip" to="." method="_on_skip_pressed"]
 [connection signal="timeout" from="TimerStory" to="." method="_on_timer_story_timeout"]
