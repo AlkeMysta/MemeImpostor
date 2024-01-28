@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://df6p66co5k8dl"]
+[gd_scene load_steps=18 format=3 uid="uid://df6p66co5k8dl"]
 
 [ext_resource type="Script" path="res://start.gd" id="1_fgfpt"]
 [ext_resource type="Texture2D" uid="uid://cl6a4kvly83h0" path="res://img/Console1.jpeg" id="1_pp0pn"]
 [ext_resource type="Texture2D" uid="uid://df0he70i62yv3" path="res://img/earth_from_space.jpg" id="2_d31id"]
 [ext_resource type="Texture2D" uid="uid://dddmusm3qd7pp" path="res://img/navespazjalwgdshxuz.png" id="3_iceuv"]
 [ext_resource type="Texture2D" uid="uid://d1syvek4hea42" path="res://img/SpaceStation.jpeg" id="3_s1wsb"]
+[ext_resource type="Texture2D" uid="uid://dkmqgrrlgcxcu" path="res://img/buttonSmall.png" id="6_3s7tf"]
+[ext_resource type="Texture2D" uid="uid://b3nl664cliwqx" path="res://meme/PepeTheFrog.jpeg" id="7_2e8x0"]
+[ext_resource type="Texture2D" uid="uid://evj8n0f5eilu" path="res://img/arrowDX.png" id="7_x66o7"]
+[ext_resource type="Texture2D" uid="uid://nm0fny7o76yt" path="res://img/arrowSX.png" id="8_10rp8"]
+[ext_resource type="Texture2D" uid="uid://cyx2c0huf6pf1" path="res://meme/Stonks.jpeg" id="8_wrqrq"]
+[ext_resource type="Texture2D" uid="uid://by8iw0dw511iv" path="res://meme/DogeGlasses.jpeg" id="9_iilau"]
+[ext_resource type="Texture2D" uid="uid://154kn6rvxb3l" path="res://img/xbuttongjfxbxhxhduzn.png" id="9_x6ch7"]
+[ext_resource type="Texture2D" uid="uid://n1l31bis6kif" path="res://meme/CryingCat.jpeg" id="10_daana"]
+[ext_resource type="Texture2D" uid="uid://dumrbdyrs6myc" path="res://meme/Scoiattolo.jpeg" id="13_ex46o"]
+[ext_resource type="Texture2D" uid="uid://8d0t57lv2dro" path="res://meme/KazooKid.jpeg" id="15_ho78x"]
+[ext_resource type="Texture2D" uid="uid://l3g1tsilarp" path="res://meme/BarkingDog.jpeg" id="16_g50aj"]
+[ext_resource type="AudioStream" uid="uid://nme7css4llqk" path="res://PersonalSpace.mp3" id="17_30dct"]
 
 [node name="Start" type="Node2D"]
 script = ExtResource("1_fgfpt")
@@ -12,7 +24,7 @@ script = ExtResource("1_fgfpt")
 [node name="Space" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(1.16, 1.12)
+scale = Vector2(1.12, 1.12)
 texture = ExtResource("2_d31id")
 
 [node name="Story" type="TextureRect" parent="."]
@@ -26,7 +38,7 @@ texture = ExtResource("3_iceuv")
 
 [node name="StoryText" type="Label" parent="."]
 visible = false
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -50,10 +62,11 @@ texture = ExtResource("1_pp0pn")
 expand_mode = 4
 
 [node name="Pic" type="TextureRect" parent="Console"]
-offset_left = 192.913
-offset_top = 231.387
-offset_right = 252.913
-offset_bottom = 291.387
+layout_mode = 0
+offset_left = 192.25
+offset_top = 240.929
+offset_right = 252.25
+offset_bottom = 300.929
 scale = Vector2(3.80176, 7.12249)
 texture = ExtResource("3_s1wsb")
 expand_mode = 4
@@ -61,9 +74,9 @@ expand_mode = 4
 [node name="Titolo" type="Label" parent="Console"]
 layout_mode = 0
 offset_left = 190.261
-offset_top = 83.4903
+offset_top = 67.985
 offset_right = 319.261
-offset_bottom = 106.49
+offset_bottom = 116.985
 scale = Vector2(1.78205, 2.28296)
 text = "Routine - Process Tasks"
 autowrap_mode = 3
@@ -94,32 +107,117 @@ autowrap_mode = 3
 clip_text = true
 max_lines_visible = 16
 
-[node name="TextureButton" type="TextureButton" parent="Console"]
+[node name="Pulsante" type="Button" parent="Console"]
+visible = false
+modulate = Color(1, 0.929412, 0.792157, 1)
+self_modulate = Color(0.337255, 0.666667, 0.560784, 1)
 layout_mode = 0
-offset_left = 92.8102
-offset_top = 300.565
-offset_right = 132.81
-offset_bottom = 340.565
+offset_left = 611.221
+offset_top = 595.166
+offset_right = 755.221
+offset_bottom = 683.166
+scale = Vector2(0.4, 1)
+text = "Enter"
+icon = ExtResource("6_3s7tf")
+icon_alignment = 1
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Console/TextureButton"]
-position = Vector2(-92.8102, -300.565)
-rotation = 3.14159
-scale = Vector2(11.5959, 5.45086)
+[node name="FrecciaDX" type="TextureButton" parent="Console"]
+visible = false
+layout_mode = 0
+offset_left = 603.929
+offset_top = 281.482
+offset_right = 1883.93
+offset_bottom = 1561.48
+scale = Vector2(0.09, 0.13)
+texture_normal = ExtResource("7_x66o7")
+texture_pressed = ExtResource("7_x66o7")
+texture_hover = ExtResource("7_x66o7")
 
-[node name="TextEdit" type="TextEdit" parent="Console"]
+[node name="FrecciaSX" type="TextureButton" parent="Console"]
+visible = false
+layout_mode = 0
+offset_left = 53.0344
+offset_top = 276.711
+offset_right = 1333.03
+offset_bottom = 1556.71
+scale = Vector2(0.09, 0.13)
+texture_normal = ExtResource("8_10rp8")
+texture_pressed = ExtResource("8_10rp8")
+texture_hover = ExtResource("8_10rp8")
+
+[node name="PulsX" type="TextureButton" parent="Console"]
+visible = false
+layout_mode = 0
+offset_left = 102.092
+offset_top = 592.781
+offset_right = 1030.09
+offset_bottom = 1693.78
+scale = Vector2(0.14, 0.203)
+texture_normal = ExtResource("9_x6ch7")
+texture_pressed = ExtResource("9_x6ch7")
+texture_hover = ExtResource("9_x6ch7")
+
+[node name="MemeTextInput" type="TextEdit" parent="Console"]
 visible = false
 layout_mode = 0
 offset_left = 430.242
 offset_top = 84.683
-offset_right = 438.242
-offset_bottom = 92.683
-scale = Vector2(18.6074, 27.0967)
-text = "Scrivi qui il tuo meme"
-scroll_vertical = 1.0
+offset_right = 530.242
+offset_bottom = 684.683
+scale = Vector2(1.52481, 0.956672)
+wrap_mode = 1
+
+[node name="Stonks" type="Sprite2D" parent="Console"]
+visible = false
+position = Vector2(306.273, 453.233)
+scale = Vector2(0.222, 0.555)
+texture = ExtResource("8_wrqrq")
+
+[node name="PepeTheFrog" type="Sprite2D" parent="Console"]
+visible = false
+position = Vector2(306.274, 455.618)
+scale = Vector2(0.235, 0.5)
+texture = ExtResource("7_2e8x0")
+
+[node name="DogeGlasses" type="Sprite2D" parent="Console"]
+visible = false
+position = Vector2(306.937, 453.233)
+scale = Vector2(0.52, 0.96)
+texture = ExtResource("9_iilau")
+
+[node name="Scoiattolo" type="Sprite2D" parent="Console"]
+visible = false
+position = Vector2(304.286, 453.233)
+scale = Vector2(0.23, 0.44)
+texture = ExtResource("13_ex46o")
+
+[node name="CryingCat" type="Sprite2D" parent="Console"]
+visible = false
+position = Vector2(305.611, 455.618)
+scale = Vector2(0.41, 0.95)
+texture = ExtResource("10_daana")
+
+[node name="KazooKid" type="Sprite2D" parent="Console"]
+visible = false
+position = Vector2(307.601, 455.618)
+scale = Vector2(0.19, 0.36)
+texture = ExtResource("15_ho78x")
+
+[node name="BarkingDog" type="Sprite2D" parent="Console"]
+visible = false
+position = Vector2(305.612, 454.426)
+scale = Vector2(0.5, 0.95)
+texture = ExtResource("16_g50aj")
 
 [node name="TimerStory" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 
+[node name="Musica" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_30dct")
+volume_db = 16.0
+autoplay = true
+
+[connection signal="pressed" from="Console/Pulsante" to="." method="_on_pulsante_pressed"]
 [connection signal="timeout" from="TimerStory" to="." method="_on_timer_story_timeout"]
